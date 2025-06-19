@@ -10,31 +10,31 @@ from esphome.const import (
     UNIT_VOLT,
 )
 
-from .. import MCP3008, mcp3008_ns
+from .. import MCP3002, mcp3002_ns
 
 AUTO_LOAD = ["voltage_sampler"]
 
-DEPENDENCIES = ["mcp3008"]
+DEPENDENCIES = ["mcp3002"]
 
-MCP3008Sensor = mcp3008_ns.class_(
-    "MCP3008Sensor",
+MCP3002Sensor = mcp3002_ns.class_(
+    "MCP3002Sensor",
     sensor.Sensor,
     cg.PollingComponent,
     voltage_sampler.VoltageSampler,
-    cg.Parented.template(MCP3008),
+    cg.Parented.template(MCP3002),
 )
-CONF_MCP3008_ID = "mcp3008_id"
+CONF_MCP3002_ID = "mcp3002_id"
 
 CONFIG_SCHEMA = (
     sensor.sensor_schema(
-        MCP3008Sensor,
+        MCP3002Sensor,
         unit_of_measurement=UNIT_VOLT,
         state_class=STATE_CLASS_MEASUREMENT,
         device_class=DEVICE_CLASS_VOLTAGE,
     )
     .extend(
         {
-            cv.GenerateID(CONF_MCP3008_ID): cv.use_id(MCP3008),
+            cv.GenerateID(CONF_MCP3002_ID): cv.use_id(MCP3002),
             cv.Required(CONF_NUMBER): cv.int_,
             cv.Optional(CONF_REFERENCE_VOLTAGE, default="3.3V"): cv.voltage,
         }
@@ -45,7 +45,7 @@ CONFIG_SCHEMA = (
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
-    await cg.register_parented(var, config[CONF_MCP3008_ID])
+    await cg.register_parented(var, config[CONF_MCP3002_ID])
     await cg.register_component(var, config)
     await sensor.register_sensor(var, config)
 
