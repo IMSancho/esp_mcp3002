@@ -24,8 +24,8 @@ void MCP3002::dump_config() {
 float MCP3002::read_data(uint8_t pin) {
   uint8_t data_msb, data_lsb = 0;
 
-  uint8_t command = ((0x01 << 7) |          // start bit
-                     ((pin & 0x07) << 4));  // channel number
+  uint8_t command = ((0x03 << 6) |          // sgl/diff bit
+                     ((pin & 0x01) << 5));  // channel number
 
   this->enable();
   this->transfer_byte(0x01);
