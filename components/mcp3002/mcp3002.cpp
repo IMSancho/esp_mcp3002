@@ -21,7 +21,8 @@ void MCP3002::dump_config() {
   LOG_PIN("  CS Pin:", this->cs_);
 }
 
-float MCP3002::read_data(uint8_t pin) {
+uint16_t MCP3002::read_data(uint8_t pin) {
+//float MCP3002::read_data(uint8_t pin) {
   uint8_t data_null, data_msb, data_lsb = 0;
 
   uint8_t command = ((0x03 << 6) |          // sgl/diff bit
