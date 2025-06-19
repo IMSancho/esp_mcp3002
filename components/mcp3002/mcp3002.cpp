@@ -21,8 +21,7 @@ void MCP3002::dump_config() {
   LOG_PIN("  CS Pin:", this->cs_);
 }
 
-uint16_t MCP3002::read_data(uint8_t pin) {
-//float MCP3002::read_data(uint8_t pin) {
+float MCP3002::read_data(uint8_t pin) {
   uint8_t data_null, data_msb, data_lsb = 0;
 
   uint8_t command = ((0x03 << 6) |          // sgl/diff bit
@@ -38,9 +37,9 @@ uint16_t MCP3002::read_data(uint8_t pin) {
   this->disable();
 
   uint16_t data = encode_uint16(data_msb, data_lsb);
-
+  float dataf = data;
   // return data / 1023.0f;
-  return data;
+  return dataf;
 }
 
 }  // namespace mcp3002
