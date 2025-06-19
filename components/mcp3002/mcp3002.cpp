@@ -37,8 +37,8 @@ float MCP3002::read_data(uint8_t pin) {
 
   this->disable();
 
-  //uint16_t data = encode_uint16(data_msb, data_lsb);
-  uint16_t data = encode_uint16(data_null, data_msb);
+  uint16_t data = encode_uint16(data_msb, data_lsb);
+  //uint16_t data = encode_uint16(data_null, data_msb);
   float dataf = data;
   // return data / 1023.0f;
   return dataf;
