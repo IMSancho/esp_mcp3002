@@ -17,9 +17,14 @@ void MCP3002Sensor::dump_config() {
                 this->pin_, this->reference_voltage_);
 }
 
-float MCP3002Sensor::sample() {
-  float value_v = this->parent_->read_data(pin_);
-  value_v = (value_v * this->reference_voltage_);
+//float MCP3002Sensor::sample() {
+//  float value_v = this->parent_->read_data(pin_);
+//  value_v = (value_v * this->reference_voltage_);
+//  return value_v;
+//}
+
+uint16_t MCP3002Sensor::sample() {
+  uint16_t value_v = this->parent_->read_data(pin_);
   return value_v;
 }
 
