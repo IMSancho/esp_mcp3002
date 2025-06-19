@@ -28,15 +28,16 @@ float MCP3002::read_data(uint8_t pin) {
                      ((pin & 0x01) << 5));  // channel number
 
   this->enable();
-  //data_null = this->transfer_byte(0x01);
+  data_null = this->transfer_byte(0x01);
 
-  //data_msb = this->transfer_byte(command) & 0x03;
-  data_msb = this->transfer_byte(0x0E) & 0x7F;
+  data_msb = this->transfer_byte(command) & 0x03;
+  //data_msb = this->transfer_byte(0x0E) & 0x7F;
   data_lsb = this->transfer_byte(0x00);
 
   this->disable();
 
-  uint16_t data = encode_uint16(data_msb, data_lsb);
+  //uint16_t data = encode_uint16(data_msb, data_lsb);
+  uint16_t data = encode_uint16(data_null, data_msb);
   float dataf = data;
   // return data / 1023.0f;
   return dataf;
