@@ -37,7 +37,8 @@ float MCP3002::read_data(uint8_t pin) {
 
   uint16_t data = encode_uint16(data_msb, data_lsb);
 
-  return data / 1023.0f;
+  // return data / 1023.0f;
+  return data;
 }
 
 }  // namespace mcp3002
