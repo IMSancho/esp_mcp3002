@@ -20,8 +20,7 @@ class MCP3002Sensor : public PollingComponent,
   void update() override;
   void dump_config() override;
   float get_setup_priority() const override;
-  //float sample() override;
-  uint16_t sample() override;
+  float sample() override;
 
  protected:
   uint8_t pin_;
