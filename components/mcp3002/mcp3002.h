@@ -15,7 +15,8 @@ class MCP3002 : public Component,
   void setup() override;
   void dump_config() override;
   float get_setup_priority() const override;
-  float read_data(uint8_t pin);
+  //float read_data(uint8_t pin);
+  uint16_t read_data(uint8_t pin);
 };
 
 }  // namespace mcp3002
